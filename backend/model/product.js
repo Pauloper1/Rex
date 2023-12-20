@@ -20,7 +20,7 @@ const productSchema = mongoose.Schema({
         type: Boolean
     },
     dateOfSale: {
-        type: String
+        type: Date
     }
 })
 

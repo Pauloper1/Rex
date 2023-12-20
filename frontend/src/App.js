@@ -1,13 +1,17 @@
-import './App.css';
+import React from "react";
+import Dashboard from "./pages/Dashboard";
+import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Dashboard from './pages/Dashboard'
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <ChakraProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />}/>
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
   );
 }
 

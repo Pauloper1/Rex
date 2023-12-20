@@ -33,7 +33,16 @@ router.get('/all', async (req, res) => {
 router.get('/piechart', async (req, res) => {
     console.log('piechart Route')
     try {
-        const allProducts = await Product.find({})
+        const { month = 3 } = req.query
+        const monthCon = {
+            $expr: {
+                $eq: [
+                    { $month: '$dateOfSale' },
+                    month
+                ],
+            }
+        }
+        const allProducts = await Product.find(monthCon)
         var categories = {}
         allProducts.forEach(product => {
             category = product['category']
@@ -55,9 +64,18 @@ router.get('/piechart', async (req, res) => {
 })
 
 router.get('/barchart', async (req, res) => {
+    const { month = 3 } = req.query
+    const monthCon = {
+        $expr: {
+            $eq: [
+                { $month: '$dateOfSale' },
+                month
+            ],
+        }
+    }
     console.log('barchart Route')
     try {
-        const allProducts = await Product.find({})
+        const allProducts = await Product.find(monthCon)
         // console.log(allProducts)
         var pRangeProduct = Array(10).fill(0);
         allProducts.forEach(product => {
@@ -104,7 +122,7 @@ router.get('/monthStat', async (req, res) => {
     //Rather than getting all the products. Apply filter in the find method itself
     try {
         const month = req.query.month ? parseInt(req.query.month) : 3
-        if (month < 1 || month >12){
+        if (month < 1 || month > 12) {
             throw new Error(`Invalid month`)
         }
         var allProducts = await Product.find({})
@@ -115,14 +133,14 @@ router.get('/monthStat', async (req, res) => {
             const date = new Date(item['dateOfSale']).getMonth() + 1
             if (date == month) {
                 // console.log(item['title'],item['price'])
-                if(item['sold']){
+                if (item['sold']) {
                     soldCount++
                     TotalSale += item['price']
                     console.log(TotalSale)
-                }else{
+                } else {
                     notSold++
                 }
-            
+
                 return item
             }
         })

@@ -10,7 +10,7 @@ const loadDB = async()=>{
             const insertedData = await Product.insertMany(data)
             console.log('Database Seeded!')
         }catch(err){
-            console.log('Error in seeding Data'.red.bold)
+            console.log(`Error in seeding Data: ${err.message}`.red.bold)
         }
     } else{
         console.log('Database already Seeded!')
