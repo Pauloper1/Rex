@@ -138,6 +138,9 @@ const Dashboard = () => {
         }
     }
     useEffect(() => {
+        setSearchQuery('')
+        setPage(1)
+        setLimit(10)
         setSearchLoading(true)
         setStatLoading(true)
         getStat()
