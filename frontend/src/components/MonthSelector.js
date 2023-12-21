@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Select } from "@chakra-ui/react";
 const MonthSelector = ({ month, handleMonth }) => {
-    console.log(month)
     return (
         <Box p={4}>
             <Select placeholder="Select a month" value={month} onChange={handleMonth}>

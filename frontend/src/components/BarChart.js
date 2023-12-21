@@ -16,7 +16,6 @@ const BarChart = ({ BarData }) => {
             },
         ],
     }
-    console.log((BarData?.pRangeProduct))
 
     const options = {
         scales: {

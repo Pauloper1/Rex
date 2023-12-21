@@ -3,7 +3,7 @@ import { Box, Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from "@chak
 
 
 const MonthStat = ({data, month})=>{
-    console.log(month)
+    // console.log(month)
     return(
         <Box>
       <Stat>

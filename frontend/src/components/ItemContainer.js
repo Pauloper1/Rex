@@ -19,6 +19,7 @@ const ItemContainer = ({ productList }) => {
                             <Text fontSize="lg" fontWeight="bold" color="teal.500">
                                 ${product.price}
                             </Text>                            <Text>{product.sold ? <Badge colorScheme="green">Sold</Badge> : <Badge colorScheme="red">Sale</Badge>}</Text>
+                            <Badge colorScheme="blue">{product.category}</Badge>
                         </CardBody>
                         <CardFooter>
                             <Button>View</Button>

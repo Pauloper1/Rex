@@ -5,15 +5,13 @@ const Product = require('../model/product')
 
 router.get('/all', async (req, res) => {
     try {
+        const { month = 3 } = req.query.month
         const BASE_API = 'http://localhost:5000'
-        console.log('hello')
         const result = await Promise.all([
-            fetch(`${BASE_API}/api/stat/monthStat`),
-            fetch(`${BASE_API}/api/stat/barchart`),
-            fetch(`${BASE_API}/api/stat/piechart`)
+            fetch(`${BASE_API}/api/stat/monthStat?=month=${month}`),
+            fetch(`${BASE_API}/api/stat/barchart?=month=${month}`),
+            fetch(`${BASE_API}/api/stat/piechart?=month=${month}`)
         ])
-
-        console.log(result)
         var a = await result[0].json()
         var b = await result[1].json()
         var c = await result[2].json()
