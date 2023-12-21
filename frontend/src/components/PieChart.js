@@ -25,7 +25,7 @@ const PieChart = ({PieData}) => {
 
     const options = {
         animation: {
-            duration: 1000,
+            // duration: 1000,
         },
     };
     return <Pie data={data} options={options} />;

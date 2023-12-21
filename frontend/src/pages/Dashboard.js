@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Container, Card, Flex, ListItem } from "@chakra-ui/react";
+import { Container, Card, Flex, ListItem, Heading } from "@chakra-ui/react";
 import { Input, InputGroup, InputRightElement, IconButton, Box, Select, Stack } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
@@ -54,7 +54,7 @@ const Dashboard = () => {
         const response = await fetch(`${BASE_API}/api/product?page=${page}&limit=${limit}&search=${searchQuery}&month=${month}`)
         await new Promise((resolve) => { setTimeout(resolve, 1000) })
         const prod = await response.json()
-        
+
         setSearchLoading(false)
         setProduct(prod.searchData)
         setTotalPage(prod.totalPage)
@@ -66,7 +66,7 @@ const Dashboard = () => {
         console.log(page)
         setLimit(e.target.value)
     }
-    
+
 
     const changePage = (e) => {
         setPage(e.target.value)
@@ -151,7 +151,7 @@ const Dashboard = () => {
     }, [month, searchQuery, limit, page])
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <Flex>
                 {/* Product display*/}
                 <Box h={"100vh"} maxW={900} flexGrow="1" p="20px" position="relative">
@@ -159,7 +159,7 @@ const Dashboard = () => {
                         <SearchBar searchQuery={searchQuery} handleSearchQuery={handleSearchQuery} />
                         <MonthSelector month={month} handleMonth={handleMonth} />
                     </Stack>
-                
+
                     {isSearchLoading ? (
                         <CardLoading />
                     ) : (
@@ -180,9 +180,10 @@ const Dashboard = () => {
                     {/*  */}
                 </Box>
                 {
-                    (isStatLoading ) ? (
+                    (isStatLoading) ? (
                         <Stack direction="column">
                             <Box w="100%" boxShadow="lg" borderRadius="md" p={4}>
+                                <Heading size="m">Monthly Stats</Heading>
                                 <MonthLoading />
                             </Box>
                             <Container>
@@ -194,33 +195,35 @@ const Dashboard = () => {
                         </Stack>
                     ) : (
                         <Flex>
-                            <Stack flexGrow={1}>
+                            <Stack >
                                 <Box w="100%" boxShadow="lg" borderRadius="md" p={4}>
+                                    <Heading size="m">Monthly Stats</Heading>
                                     <MonthStat data={monthStatistics} month={getMonth(month)} />
                                 </Box>
                                 {
                                     barData && (
-                                        <Card w="500px" h="300px"
-                                        m={5}
-                                        p={5}
-                                        bg="blue.50"
+                                        <Box w="500px" h="300px"
+                                            m={5}
+                                            p={5}
+                                            bg="blue.50"
                                         >
-
+                                            <Heading size="m">PriceRange vs Count</Heading>
                                             <BarChart BarData={barData} />
-                                        </Card>
+                                        </Box>
                                     )
                                 }
 
                                 {/* Piechart */}
                                 {
                                     pieData && (
-                                        <Card  
-                                        w="300px" 
-                                        m={5}
-                                        p={5}
-                                        bg="blue.50">
+                                        <Box
+                                            w="300px"
+                                            m={5}
+                                            p={5}
+                                            bg="blue.50">
+                                            <Heading size="m">Category vs Count</Heading>
                                             <PieChart PieData={pieData} />
-                                        </Card>
+                                        </Box>
                                     )
                                 }
                             </Stack>

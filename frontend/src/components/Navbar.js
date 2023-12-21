@@ -12,7 +12,7 @@ const Navbar = () =>{
         color="blue.700"
         >
             <Box>
-                <Heading>Rex Dasboard</Heading>
+                <Heading>Rex Dashboard</Heading>
             </Box>
         </Flex>
     )
