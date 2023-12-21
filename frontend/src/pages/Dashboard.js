@@ -51,10 +51,10 @@ const Dashboard = () => {
     }
     const getProducts = async () => {
         const response = await fetch(`${BASE_API}/api/product?page=${page}&limit=${limit}&search=${searchQuery}&month=${month}`)
-        await new Promise((resolve)=>{setTimeout(resolve,2000)})
+        await new Promise((resolve)=>{setTimeout(resolve,1000)})
         const prod = await response.json()
         setSearchLoading(false)
-        setProduct(prod.searchData)
+        setProduct(prod.searchData) 
         setCurrentPage(prod.currentPage)
         setTotalItems(prod.totalItems)
     }
