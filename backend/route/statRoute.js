@@ -5,12 +5,13 @@ const Product = require('../model/product')
 
 router.get('/all', async (req, res) => {
     try {
-        const { month = 3 } = req.query.month
+        const month = parseInt(req.query.month) || 3
+
         const BASE_API = 'http://localhost:5000'
         const result = await Promise.all([
-            fetch(`${BASE_API}/api/stat/monthStat?=month=${month}`),
-            fetch(`${BASE_API}/api/stat/barchart?=month=${month}`),
-            fetch(`${BASE_API}/api/stat/piechart?=month=${month}`)
+            fetch(`${BASE_API}/api/stat/monthStat?month=${month}`),
+            fetch(`${BASE_API}/api/stat/barchart?month=${month}`),
+            fetch(`${BASE_API}/api/stat/piechart?month=${month}`)
         ])
         var a = await result[0].json()
         var b = await result[1].json()
@@ -63,6 +64,7 @@ router.get('/piechart', async (req, res) => {
 
 router.get('/barchart', async (req, res) => {
     const { month = 3 } = req.query
+
     const monthCon = {
         $expr: {
             $eq: [

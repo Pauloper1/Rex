@@ -51,6 +51,7 @@ const Dashboard = () => {
     }
     const getProducts = async () => {
         const response = await fetch(`${BASE_API}/api/product?page=${page}&limit=${limit}&search=${searchQuery}&month=${month}`)
+        await new Promise((resolve)=>{setTimeout(resolve,2000)})
         const prod = await response.json()
         setSearchLoading(false)
         setProduct(prod.searchData)
@@ -135,6 +136,8 @@ const Dashboard = () => {
         // getMonthStat()
         // getBarChart()
         // getPieChart()
+        setSearchLoading(true)
+        setStatLoading(true)
         getStat()
     }, [month])
 
@@ -168,17 +171,17 @@ const Dashboard = () => {
                     {/*  */}
                 </div>
                 {
-                    isStatLoading ? (
+                    (isStatLoading && monthStatistics && barData && pieData) ? (
                         <Stack>
-                        <Container>
-                            <MonthLoading />
-                        </Container>
-                        <Container>
-                            <BarLoading/>
-                        </Container>
-                        <Container>
-                            <PieLoading />
-                        </Container>
+                            <Container>
+                                <MonthLoading />
+                            </Container>
+                            <Container>
+                                <BarLoading />
+                            </Container>
+                            <Container>
+                                <PieLoading />
+                            </Container>
                         </Stack>
                     ) : (
                         <Stack>
