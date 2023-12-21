@@ -18,7 +18,16 @@ const PageController = ({ currentPage, totalItem, totalPage, limit, changeLimit,
     }
 
     return (
-        <Stack m={4} direction="row" className="page-controller" justify="space-around">
+        <Stack
+            m={10}
+            p={5}
+            direction="row"
+            className="page-controller"
+            justify="space-around"
+            position="absolute"
+            bottom={0}
+            left={0}
+            right={0}>
 
             <HStack>
                 <Text fontSize="md">Page No:</Text>
@@ -26,10 +35,10 @@ const PageController = ({ currentPage, totalItem, totalPage, limit, changeLimit,
             </HStack>
 
             <HStack>
-                <Button colorScheme="blue" size="xs" mr={2} onClick={handleNext}>
+                <Button colorScheme="blue" size="md" mr={2} onClick={handleNext}>
                     Next
                 </Button>
-                <Button colorScheme="blue" size="xs" onClick={handlePre}>
+                <Button colorScheme="blue" size="md" onClick={handlePre}>
                     Previous
                 </Button>
             </HStack>

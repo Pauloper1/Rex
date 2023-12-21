@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from "@chakra-ui/react";
+import { Box,Stack, Stat, StatLabel, StatNumber, StatHelpText, StatArrow } from "@chakra-ui/react";
 
 
-const MonthStat = ({data, month})=>{
-    // console.log(month)
-    return(
-        <Box>
+const MonthStat = ({ data, month }) => {
+  // console.log(month)
+  return (
+    <Stack direction="row" justifyContent="space-around">
       <Stat>
         <StatLabel>Total Sale</StatLabel>
         <StatNumber>{data?.TotalSale}</StatNumber>
@@ -17,18 +17,14 @@ const MonthStat = ({data, month})=>{
       <Stat mt={4}>
         <StatLabel>Items Sold</StatLabel>
         <StatNumber>{data?.soldCount}</StatNumber>
-        {/* <StatHelpText>
-          <StatArrow type="increase" />
-          5% since last month
-        </StatHelpText> */}
       </Stat>
 
       <Stat mt={4}>
         <StatLabel>Items For Sale</StatLabel>
         <StatNumber>{data?.notSoldCount}</StatNumber>
       </Stat>
-    </Box>
-    )
+    </Stack>
+  )
 }
 
 export default MonthStat

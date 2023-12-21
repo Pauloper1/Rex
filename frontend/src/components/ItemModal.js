@@ -1,6 +1,6 @@
-import { useDisclosure, Image, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@chakra-ui/react";
+import {Text, Image, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@chakra-ui/react";
 
-function ItemModal({ isOpen, onClose, image }) {
+function ItemModal({ isOpen, onClose, image, desc}) {
 
     return (
         <>
@@ -12,7 +12,7 @@ function ItemModal({ isOpen, onClose, image }) {
                             src={image}
                             borderRadius='lg'
                         />
-
+                        <Text>{desc}</Text>
                     </ModalBody>
                     <ModalFooter>
                         <Button colorScheme="blue" mr={3} onClick={onClose}>

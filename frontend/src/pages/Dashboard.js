@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Container, Flex, ListItem } from "@chakra-ui/react";
+import { Container, Card, Flex, ListItem } from "@chakra-ui/react";
 import { Input, InputGroup, InputRightElement, IconButton, Box, Select, Stack } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
@@ -18,6 +18,7 @@ import CardLoading from "../components/loadingComponents/CardLoading";
 import MonthLoading from "../components/loadingComponents/MonthLoading";
 import PieLoading from "../components/loadingComponents/PieLoading"
 import BarLoading from "../components/loadingComponents/BarLoading"
+import Navbar from "../components/Navbar"
 
 const Dashboard = () => {
     const [products, setProduct] = useState([])
@@ -51,10 +52,10 @@ const Dashboard = () => {
     }
     const getProducts = async () => {
         const response = await fetch(`${BASE_API}/api/product?page=${page}&limit=${limit}&search=${searchQuery}&month=${month}`)
-        await new Promise((resolve)=>{setTimeout(resolve,1000)})
+        await new Promise((resolve) => { setTimeout(resolve, 1000) })
         const prod = await response.json()
         setSearchLoading(false)
-        setProduct(prod.searchData) 
+        setProduct(prod.searchData)
         setCurrentPage(prod.currentPage)
         setTotalItems(prod.totalItems)
     }
@@ -117,7 +118,7 @@ const Dashboard = () => {
     const getStat = async () => {
         try {
             const response = await fetch(`${BASE_API}/api/stat/all?month=${month}`)
-            await new Promise((resolve)=>{setTimeout(resolve,2000)})
+            await new Promise((resolve) => { setTimeout(resolve, 2000) })
             const result = await response.json()
             setStatLoading(false)
 
@@ -133,9 +134,6 @@ const Dashboard = () => {
         }
     }
     useEffect(() => {
-        // getMonthStat()
-        // getBarChart()
-        // getPieChart()
         setSearchLoading(true)
         setStatLoading(true)
         getStat()
@@ -146,18 +144,21 @@ const Dashboard = () => {
     }, [month, searchQuery, limit, page])
     return (
         <div>
-            <h1>Dashboard</h1>
+            <Navbar/>
             <Flex>
-                {/* Transaction Table */}
-                <div>
-                    <SearchBar searchQuery={searchQuery} handleSearchQuery={handleSearchQuery} />
-                    <MonthSelector month={month} handleMonth={handleMonth} />
+                {/* Product display*/}
+                <Box h={"100vh"} maxW={900} flexGrow="1" p="20px" position="relative">
+                    <Stack direction={"row"} alignItems="center">
+                        <SearchBar searchQuery={searchQuery} handleSearchQuery={handleSearchQuery} />
+                        <MonthSelector month={month} handleMonth={handleMonth} />
+                    </Stack>
                     <TransTable data={products} />
                     {isSearchLoading ? (
                         <CardLoading />
                     ) : (
-                        <>
+                        <><Box overflowY="auto">
                             <ItemContainer productList={products} />
+                        </Box>
                             <PageController
                                 currentPage={currentPage}
                                 totalItem={totalItem}
@@ -169,13 +170,13 @@ const Dashboard = () => {
                         </>
                     )}
                     {/*  */}
-                </div>
+                </Box>
                 {
                     (isStatLoading && monthStatistics && barData && pieData) ? (
-                        <Stack>
-                            <Container>
+                        <Stack direction="column">
+                            <Box w={900} boxShadow="lg" borderRadius="md" p={4}>
                                 <MonthLoading />
-                            </Container>
+                            </Box>
                             <Container>
                                 <BarLoading />
                             </Container>
@@ -184,33 +185,44 @@ const Dashboard = () => {
                             </Container>
                         </Stack>
                     ) : (
-                        <Stack>
-                        <Container>
-                            <MonthStat data={monthStatistics} month={getMonth(month)} />
-                        </Container>
-                        {
-                            barData && (
-                                <Container>
-                                    <BarChart BarData={barData} />
-                                </Container>
-                            )
-                        }
-        
-                        {/* Piechart */}
-                        {
-                            pieData && (
-                                <Container>
-                                    <PieChart PieData={pieData} />
-                                </Container>
-                            )
-                        }
-                        </Stack>
-        
+                        <Flex>
+                            <Stack flexGrow={1}>
+                                <Box w="100%" boxShadow="lg" borderRadius="md" p={4}>
+                                    <MonthStat data={monthStatistics} month={getMonth(month)} />
+                                </Box>
+                                {
+                                    barData && (
+                                        <Card w="500px" h="300px"
+                                        m={5}
+                                        p={5}
+                                        bg="blue.50"
+                                        >
+
+                                            <BarChart BarData={barData} />
+                                        </Card>
+                                    )
+                                }
+
+                                {/* Piechart */}
+                                {
+                                    pieData && (
+                                        <Card  
+                                        w="300px" 
+                                        m={5}
+                                        p={5}
+                                        bg="blue.50">
+                                            <PieChart PieData={pieData} />
+                                        </Card>
+                                    )
+                                }
+                            </Stack>
+                        </Flex>
+
                     )
                 }
-                
+
                 {/* Bar chart */}
-                
+
             </Flex>
         </div>
     )

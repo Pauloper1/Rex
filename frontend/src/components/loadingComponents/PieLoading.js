@@ -3,8 +3,8 @@ import { SkeletonCircle } from '@chakra-ui/react';
 const PieChartLoading = () => {
   // You can adjust the size and other styles based on your design
   const circleStyle = {
-    width: '500px',
-    height: '500px',
+    width: '300px',
+    height: '300px',
     borderRadius: 'full',
   };
 

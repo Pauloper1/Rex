@@ -132,7 +132,7 @@ router.get('/monthStat', async (req, res) => {
         allProducts.forEach((item) => {
             const date = new Date(item['dateOfSale']).getMonth() + 1
             if (date == month) {
-                // console.log(item['title'],item['price'])
+               
                 if (item['sold']) {
                     soldCount++
                     TotalSale += item['price']

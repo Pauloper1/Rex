@@ -19,16 +19,19 @@ const BarChart = ({ BarData }) => {
 
     const options = {
         scales: {
+            
             y: {
+                type: 'linear',
+                position: 'bottom',
                 beginAtZero: true,
             },
         },
         animation: {
-            duration: 1000, // Animation duration in milliseconds
+            duration: 1000,
         },
     };
 
-    return <Bar data={data} options={options} />
+    return <Bar  data={data} options={options} />
 }
 
 export default BarChart

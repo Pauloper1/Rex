@@ -1,18 +1,26 @@
 import React from "react";
-import { Card, CardHeader,useDisclosure, CardBody, CardFooter, SimpleGrid, Heading, Text, Button, Badge } from '@chakra-ui/react'
+import { Card, CardHeader,useDisclosure, CardBody, CardFooter, SimpleGrid, Heading, Text, Button, Badge, Box } from '@chakra-ui/react'
 import ItemModal from "./ItemModal"
 
 const ItemContainer = ({ productList }) => {
   return (
-    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-      {productList ? (
-        productList.map((product) => (
-          <ItemCard key={product.id} product={product} />
-        ))
-      ) : (
-        <Text>No Products</Text>
-      )}
-    </SimpleGrid>
+    <Card 
+    h="600" 
+    overflowY="auto"
+    margin={5}
+    padding={4}
+    bg="teal.50"
+    > 
+      <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
+        {productList ? (
+          productList.map((product) => (
+            <ItemCard key={product.id} product={product} />
+          ))
+        ) : (
+          <Text>No Products</Text>
+        )}
+      </SimpleGrid>
+    </Card>
   );
 };
 
