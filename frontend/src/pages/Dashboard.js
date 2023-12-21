@@ -216,7 +216,7 @@ const Dashboard = () => {
                                         m={5}
                                         p={5}
                                         bg="blue.50">
-                                            {/* <PieChart PieData={pieData} /> */}
+                                            <PieChart PieData={pieData} />
                                         </Card>
                                     )
                                 }
