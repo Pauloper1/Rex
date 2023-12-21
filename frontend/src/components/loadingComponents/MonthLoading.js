@@ -20,7 +20,7 @@ const MonthLoading = () => {
       </Stat>
 
       <Stat mt={4}>
-        <StatLabel>items For Sale</StatLabel>
+        <StatLabel>Items For Sale</StatLabel>
         <SkeletonText mt='4' noOfLines={1} spacing='4' skeletonHeight='2' />
       </Stat>
     </Box>

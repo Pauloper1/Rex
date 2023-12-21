@@ -24,7 +24,7 @@ const MonthStat = ({data, month})=>{
       </Stat>
 
       <Stat mt={4}>
-        <StatLabel>items For Sale</StatLabel>
+        <StatLabel>Items For Sale</StatLabel>
         <StatNumber>{data?.notSoldCount}</StatNumber>
       </Stat>
     </Box>
