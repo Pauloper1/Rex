@@ -19,16 +19,28 @@ const BarChart = ({ BarData }) => {
 
     const options = {
         scales: {
-            
-            y: {
-                type: 'linear',
-                position: 'bottom',
-                beginAtZero: true,
+            x: {
+              type: 'category',
+              position: 'bottom',
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Price Range',
+              },
             },
-        },
-        animation: {
+            y: {
+              type: 'linear',
+              position: 'left',
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Count',
+              },
+            },
+          },
+          animation: {
             duration: 1000,
-        },
+          },
     };
 
     return <Bar  data={data} options={options} />
