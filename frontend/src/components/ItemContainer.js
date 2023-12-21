@@ -5,7 +5,7 @@ import ItemModal from "./ItemModal"
 const ItemContainer = ({ productList }) => {
   return (
     <Card 
-    h="600" 
+    h="500" 
     overflowY="auto"
     margin={5}
     padding={4}

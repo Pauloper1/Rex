@@ -3,6 +3,9 @@ Rex Dashboard is a Coding Assessment that has in total six routes in the backend
 
 ## Live
 [Rex Dashboard](http://35.200.136.248/)
+
+## Video Deom
+[Watch!]()
 ## Tech Stack
 
 1. **React**

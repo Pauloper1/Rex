@@ -6,7 +6,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 
 
 import { BASE_API } from '../config'
-import TransTable from '../components/TransTable'
+
 import MonthSelector from '../components/MonthSelector'
 import SearchBar from '../components/SearchBar'
 import ItemContainer from "../components/ItemContainer";
@@ -156,7 +156,7 @@ const Dashboard = () => {
                         <SearchBar searchQuery={searchQuery} handleSearchQuery={handleSearchQuery} />
                         <MonthSelector month={month} handleMonth={handleMonth} />
                     </Stack>
-                    <TransTable data={products} />
+                
                     {isSearchLoading ? (
                         <CardLoading />
                     ) : (
@@ -177,7 +177,7 @@ const Dashboard = () => {
                     {/*  */}
                 </Box>
                 {
-                    (isStatLoading && monthStatistics && barData && pieData) ? (
+                    (isStatLoading ) ? (
                         <Stack direction="column">
                             <Box w="100%" boxShadow="lg" borderRadius="md" p={4}>
                                 <MonthLoading />
@@ -226,7 +226,6 @@ const Dashboard = () => {
                     )
                 }
 
-                {/* Bar chart */}
 
             </Flex>
         </div>

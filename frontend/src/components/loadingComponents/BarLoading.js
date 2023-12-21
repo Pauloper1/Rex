@@ -14,8 +14,10 @@ const BarChartLoading = () => {
     p={5}
     bg="blue.50"
     display="flex"
+    direction="row"
     justify="space-around"
     >
+      <Skeleton style={barStyle} />
       <Skeleton style={barStyle} />
       <Skeleton style={barStyle} />
       <Skeleton style={barStyle} />
