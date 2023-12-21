@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Box, Input, Text, Button, VStack, Stack, HStack, Container } from "@chakra-ui/react";
 
-const PageController = ({ currentPage, totalItem, totalPage, limit, changeLimit, changePage }) => {
+const PageController = ({ currentPage, totalItem, totalPage, limit, changeLimit, changePage, setPage }) => {
 
+    console.log(currentPage)
+    console.log(limit)
     const [nextDisable, setNextDisable] = useState(false)
     const [preDisable, setPreDisable] = useState(false)
     const handleNext = () => {
-        if (currentPage == totalPage) {
-            setNextDisable(true)
-        }
+        console.log(currentPage)
+        console.log(totalPage)
+        console.log('Next button')
+
+        setPage(currentPage+1)
     }
     const handlePre = () => {
-        if (currentPage == 1) {
-            setPreDisable(true)
-        }
+        console.log('Pre button')
 
+        setPage(currentPage-1)
     }
 
     return (
@@ -31,15 +34,21 @@ const PageController = ({ currentPage, totalItem, totalPage, limit, changeLimit,
 
             <HStack>
                 <Text fontSize="md">Page No:</Text>
-                <Input variant="outline" size="xs" width="50px" mr={2} value={currentPage} onChange={changePage} />
+                <Input
+                    variant="outline"
+                    size="xs"
+                    width="50px"
+                    mr={2}
+                    value={currentPage}
+                    onChange={(e) => setPage(e.target.value)} />
             </HStack>
 
             <HStack>
-                <Button colorScheme="blue" size="md" mr={2} onClick={handleNext}>
-                    Next
-                </Button>
-                <Button colorScheme="blue" size="md" onClick={handlePre}>
+                <Button isDisabled={preDisable} colorScheme="blue" size="md" mr={2} onClick={handlePre}>
                     Previous
+                </Button>
+                <Button isDisabled={nextDisable} colorScheme="blue" size="md" onClick={handleNext}>
+                    Next
                 </Button>
             </HStack>
 

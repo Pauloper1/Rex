@@ -14,7 +14,7 @@ const ItemContainer = ({ productList }) => {
       <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
         {productList ? (
           productList.map((product) => (
-            <ItemCard key={product.id} product={product} />
+            <ItemCard key={product._id} product={product} />
           ))
         ) : (
           <Text>No Products</Text>

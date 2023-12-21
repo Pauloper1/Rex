@@ -5,7 +5,11 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
     console.log('serach')
-    const {page = 1, limit = 10, month = 3} = req.query 
+    // const {page = 1, limit = 10, month = 3} = req.query 
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const month = parseInt(req.query.month) || 10
+
 
     console.log(isNaN(parseFloat(req.query.search)))
     console.log(month)

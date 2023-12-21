@@ -144,7 +144,7 @@ router.get('/monthStat', async (req, res) => {
                 return item
             }
         })
-        // console.log(allProducts.length)
+       
         res.json({
             TotalSale,
             soldCount,

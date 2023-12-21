@@ -4,9 +4,6 @@ import 'chart.js/auto';
 
 
 const PieChart = ({PieData}) => {
-    console.log('PieChart')
-    console.log(PieData?.categories)
-    console.log(Object.keys(PieData?.categories))
     const keys = Object.keys(PieData?.categories)
     const values = Object.values(PieData?.categories)
     const data = {

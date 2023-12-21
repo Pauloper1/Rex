@@ -1,4 +1,4 @@
-import { Skeleton } from '@chakra-ui/react';
+import { Skeleton, Box, Card } from '@chakra-ui/react';
 
 const BarChartLoading = () => {
   const barStyle = {
@@ -9,11 +9,17 @@ const BarChartLoading = () => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
+    <Card w="500px" h="300px"
+    m={5}
+    p={5}
+    bg="blue.50"
+    display="flex"
+    justify="space-around"
+    >
       <Skeleton style={barStyle} />
       <Skeleton style={barStyle} />
       <Skeleton style={barStyle} />
-    </div>
+    </Card>
   );
 };
 

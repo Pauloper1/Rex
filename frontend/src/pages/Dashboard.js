@@ -28,7 +28,7 @@ const Dashboard = () => {
     const [limit, setLimit] = useState(10)
     const [totalItem, setTotalItems] = useState(0)
     const [totalPage, setTotalPage] = useState(0)
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState()
     const [monthStatistics, setMonthStatistics] = useState()
     const [barData, setBarData] = useState()
     const [pieData, setPieData] = useState()
@@ -54,15 +54,19 @@ const Dashboard = () => {
         const response = await fetch(`${BASE_API}/api/product?page=${page}&limit=${limit}&search=${searchQuery}&month=${month}`)
         await new Promise((resolve) => { setTimeout(resolve, 1000) })
         const prod = await response.json()
+        
         setSearchLoading(false)
         setProduct(prod.searchData)
-        setCurrentPage(prod.currentPage)
+        setTotalPage(prod.totalPage)
         setTotalItems(prod.totalItems)
     }
 
     const changeLimit = (e) => {
+        // console.log('page')
+        console.log(page)
         setLimit(e.target.value)
     }
+    
 
     const changePage = (e) => {
         setPage(e.target.value)
@@ -160,12 +164,13 @@ const Dashboard = () => {
                             <ItemContainer productList={products} />
                         </Box>
                             <PageController
-                                currentPage={currentPage}
+                                currentPage={page}
                                 totalItem={totalItem}
                                 totalPage={totalPage}
                                 limit={limit}
                                 changeLimit={changeLimit}
                                 changePage={changePage}
+                                setPage={setPage}
                             />
                         </>
                     )}
@@ -174,7 +179,7 @@ const Dashboard = () => {
                 {
                     (isStatLoading && monthStatistics && barData && pieData) ? (
                         <Stack direction="column">
-                            <Box w={900} boxShadow="lg" borderRadius="md" p={4}>
+                            <Box w="100%" boxShadow="lg" borderRadius="md" p={4}>
                                 <MonthLoading />
                             </Box>
                             <Container>
@@ -211,7 +216,7 @@ const Dashboard = () => {
                                         m={5}
                                         p={5}
                                         bg="blue.50">
-                                            <PieChart PieData={pieData} />
+                                            {/* <PieChart PieData={pieData} /> */}
                                         </Card>
                                     )
                                 }
